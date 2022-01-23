@@ -1,0 +1,7 @@
+// 닫혀 있는 파일에도 자동 완성이 제대로 작동하려면 프로젝트 최상위 디렉터리에
+// jsconfig.json 파일을 만들어 주자
+{
+    "compilerOptions": {
+        "target": "es6"
+    }
+}
