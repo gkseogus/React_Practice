@@ -1,4 +1,4 @@
-import TodoTemplate from './todo-app/components/TodoTemplate.js';
+import TodoTemplate from './components/TodoTemplate.js';
 import React from 'react';
 
 const App = () => {
