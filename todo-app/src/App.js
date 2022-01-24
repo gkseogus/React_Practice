@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { useState, useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import TodoTemplate from './components/TodoTemplate.js';
 import TodoInsert from './components/TodoInsert.js';
 import TodoList from './components/TodoList';
