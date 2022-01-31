@@ -21,3 +21,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+Redux연습/react-redux-tutorial/src/reportWebVitals.js
+Redux연습/react-redux-tutorial/src/setupTests.js
+Redux연습/react-redux-tutorial/src/logo.svg
+.gitignore
+context-tutorial
+Redux연습/react-redux-tutorial/.gitignore
+.gitignore
+Redux연습/react-redux-tutorial/package.json
+package.json
+yarn.lock
