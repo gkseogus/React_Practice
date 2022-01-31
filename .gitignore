@@ -31,3 +31,12 @@ Redux연습/react-redux-tutorial/.gitignore
 Redux연습/react-redux-tutorial/package.json
 package.json
 yarn.lock
+shop-app/public/favicon.ico
+shop-app/public/index.html
+shop-app/public/logo192.png
+shop-app/public/logo512.png
+shop-app/public/manifest.json
+shop-app/public/robots.txt
+shop-app/package-lock.json
+shop-app/README.md
+.gitignore
