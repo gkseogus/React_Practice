@@ -1,10 +1,10 @@
 import './App.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useState } from 'react';
-import shoesData from './data.js';
+import Data from './data.js';
 
 function App() {
-  const [shoes, shoesChange] = useState([shoesData]);
+  let [shoes, shoesChange] = useState([Data]);
 
   return (
     <div className="App">
@@ -30,7 +30,7 @@ function App() {
 
       <div className="container">
         <div className="row">
-          {shoes.Map((i) => {
+          {shoes.map((a, i) => {
             return <Card shoes={shoes[i]} />;
           })}
         </div>

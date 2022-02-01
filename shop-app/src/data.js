@@ -1,4 +1,4 @@
-let shoesData = [
+export default [
   {
     id: 0,
     title: 'White and Black',
@@ -20,5 +20,3 @@ let shoesData = [
     price: 130000,
   },
 ];
-
-export default shoesData;
