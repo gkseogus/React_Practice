@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import './Detail.scss';
 
 let box = styled.div`
   paading: 20px;
-`;
-
-let title = styled.h4`
-  font-size: 25px;
-  color: ${(props) => props.color};
 `;
 
 function Detail(props) {
@@ -19,8 +15,11 @@ function Detail(props) {
   return (
     <div className="container">
       <box>
-        <title color="blue">Detail</title>
+        <title className="red">Detail</title>
       </box>
+      <div className="my-alert">
+        <p>재고없음</p>
+      </div>
       <div className="row">
         <div className="col-md-6">
           <img

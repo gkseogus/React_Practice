@@ -1,0 +1,41 @@
+@import './reset.scss';
+
+$mainColor: #ff0001;
+
+.red {
+  color: $mainColor;
+}
+
+// nesting 문법, 셀렉터 대신 사용
+div.container {
+  h4 {
+    color: blue;
+  }
+  p {
+    color: green;
+  }
+}
+
+.my-alert-green {
+  // 사스문법의 복사붙여넣기
+  @extend.my-alert;
+  background: yellow;
+}
+
+// 함수 만드는 문법
+@mixin func() {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+}
+
+.my-alert {
+  @include func();
+}
+
+.my-alert p {
+  margin-bottom: 0;
+}
