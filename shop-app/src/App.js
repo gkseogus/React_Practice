@@ -15,11 +15,9 @@ function App() {
           <Container>
             <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link>
-                <Link to="/">Home</Link>
+              <Nav.Link as={Link}to="/">Home
               </Nav.Link>
-              <Nav.Link>
-                <Link to="/Detail">Detail</Link>
+              <Nav.Link as={Link}to="/detail">Detail
               </Nav.Link>
               <Nav.Link>Pricing</Nav.Link>
             </Nav>
