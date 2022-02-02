@@ -1,12 +1,12 @@
 import './App.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useState } from 'react';
-import Data from './data.js';
+import Data from './data';
 import { Link, Route, Switch } from 'react-router-dom';
 import Detail from './Detail';
 
 function App() {
-  let [shoes, shoesChange] = useState([Data]);
+  let [shoes] = useState(Data);
 
   return (
     <div className="App">
@@ -37,6 +37,7 @@ function App() {
               <p>Buy it right away</p>
             </div>
           </div>
+
           <div className="container">
             <div className="row">
               {shoes.map((a, i) => {
@@ -46,12 +47,8 @@ function App() {
           </div>
         </Route>
 
-        <Route exact path="/detail">
-          <Detail />
-        </Route>
-
-        <Route path="/:id">
-          <div>아무거나</div>
+        <Route path="/Detail/:id">
+          <Detail shoes={shoes} />
         </Route>
       </Switch>
     </div>
@@ -66,7 +63,7 @@ function Card(props) {
           'https://codingapple1.github.io/shop/shoes' + (props.i + 1) + '.jpg'
         }
         width="100%"
-        alt="shoes"
+        alt="img"
       />
       <h4>{props.shoes.title}</h4>
       <p>
