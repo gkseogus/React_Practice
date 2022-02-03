@@ -6,6 +6,15 @@ $mainColor: #ff0001;
   color: $mainColor;
 }
 
+.animation-enter {
+  opacity: 0;
+}
+
+.animation-enter-active {
+  opacity: 1;
+  transition: all 500ms;
+}
+
 // nesting 문법, 셀렉터 대신 사용
 div.container {
   h4 {
