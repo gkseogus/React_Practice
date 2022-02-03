@@ -7,10 +7,32 @@ import { BrowserRouter } from 'react-router-dom';
 import {Provider} from 'react-redux';
 import { createStore } from 'redux';
 
+let baseState = [
+  {id:0, name: '신발', quan: 2}, // quan : 수량
+  {id:1, name: '신발2', quan: 2}
+];
+
+//redux에서 데이터 수정 방법을 미리 정의한다.
+function reducer(state = baseState, action){
+  if (action.type === '수량증가') {
+
+    let copy = [...state];
+    copy[0].quan++;
+    return copy
+  } else if (action.type === '수량감소'){
+    let copy = [...state];
+    if ( copy[0]>=0 ) {
+    copy[0].quan--;
+    return copy
+    }
+  }
+  else {
+    return state;
+  }
+}
+
 // state 초기값
-let store = createStore(()=>{
-  return [{id:0, name: '신발', quan: 2}] // quan : 수량
-});
+let store = createStore(reducer)
 
 // provider 로 감싼 모든 컴포넌트들은 같은 state를 공유한다.
 ReactDOM.render(
