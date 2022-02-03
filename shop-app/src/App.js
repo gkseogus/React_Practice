@@ -1,10 +1,13 @@
 import './App.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
-import { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Data from './data';
 import { Link, Route, Switch } from 'react-router-dom';
 import Detail from './Detail';
 import axios from 'axios';
+
+// 같은 값을 공유하는 범위를 생성한다.
+export let itemContext = React.createContext();
 
 function App() {
   let [shoes,shoesChange] = useState(Data);
@@ -40,11 +43,14 @@ function App() {
           </div>
 
           <div className="container">
+             {/* 공유하려는 데이터 = item */}
+            <itemContext.Provider value={item}>
             <div className="row">
               {shoes.map((a, i) => {
                 return <Card shoes={shoes[i]} i={i} key={i} />;
               })}
             </div>
+            </itemContext.Provider>
             <button className='btn btn-primary' onClick={()=>{
               
               // get 요청, axios는 알아서 JSON을 Object로 바꿔준다.
@@ -62,7 +68,13 @@ function App() {
         </Route>
 
         <Route path="/Detail/:id">
-          <Detail shoes={shoes} item = {item} itemChange={itemChange} />
+          <itemContext value={item}>
+            <Detail shoes={shoes} item = {item} itemChange={itemChange} />
+          </itemContext> 
+        </Route>
+
+        <Route path="/:id">
+          <div> 로딩중 </div>
         </Route>
       </Switch>
     </div>
@@ -70,6 +82,10 @@ function App() {
 }
 
 function Card(props) {
+
+  // 값 공유 (useContext(범위이름))
+  let item = useContext(itemContext);
+
   return (
     <div className="col-md-4">
       <img
@@ -83,7 +99,15 @@ function Card(props) {
       <p>
         {props.shoes.content} & {props.shoes.price}
       </p>
+      <Test>
+      </Test>
     </div>
   );
+}
+
+// props선언 없이 공유된 값을 가짐
+function Test() {
+  let item = useContext(itemContext);
+  return <p>{item[0]}</p>
 }
 export default App;

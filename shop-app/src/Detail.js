@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
+import { itemContext } from './App';
 
 let box = styled.div`
   paading: 20px;
@@ -10,6 +11,7 @@ let box = styled.div`
 function Detail(props) {
   let [alert, alertChange] = useState(true);
   let [inputData, inputDataChange] = useState('');
+  let item = useContext(itemContext);
 
   // 컴포넌트가 mount, update 될때 특정 코드 실행
   // 라이프사이클
