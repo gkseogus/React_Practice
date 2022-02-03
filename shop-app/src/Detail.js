@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
@@ -8,6 +8,22 @@ let box = styled.div`
 `;
 
 function Detail(props) {
+  let [alert, alertChange] = useState(true);
+  let [inputData, inputDataChange] = useState('');
+
+  // 컴포넌트가 mount, update 될때 특정 코드 실행
+  // 라이프사이클
+  useEffect(()=>{
+    let Timmer = setTimeout(()=>{
+      alertChange(false)
+    }, 3000)
+    // alert 없어지면 타이머도 사라짐
+    return ()=>{
+      clearTimeout(Timmer);
+    }
+    // [] = 조건문, alert라는 state가 변경 될 때만 useEffect 실행
+  },[alert]);
+  
   let { id } = useParams();
   let history = useHistory();
   let 찾은상품 = props.shoes.find((x) => x.id === id);
@@ -17,9 +33,21 @@ function Detail(props) {
       <box>
         <title className="red">Detail</title>
       </box>
-      <div className="my-alert">
-        <p>재고없음</p>
-      </div>
+      
+      {/* input데이터를 inputData객체에 저장 */}
+      <input onChange={(e)=>{
+        inputDataChange(e.target.value)
+      }}/>
+
+      {/* UI */}
+      {
+        alert === true?
+              <div className="my-alert">
+                  <p>재고없음</p>
+              </div> 
+        : null
+      }
+
       <div className="row">
         <div className="col-md-6">
           <img
