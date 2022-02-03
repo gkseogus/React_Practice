@@ -60,7 +60,12 @@ function Detail(props) {
           <h4 className="pt-5">{찾은상품.title}</h4>
           <p>{찾은상품.content}</p>
           <p>{찾은상품.price}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <Info InfoItem={props.item}>
+
+          </Info>
+          <button className="btn btn-danger" onClick={()=>{
+            props.itemChange(9)
+          }}>주문하기</button>
           <button
             className="btn btn-danger"
             onClick={() => {
@@ -75,4 +80,9 @@ function Detail(props) {
   );
 }
 
+function Info(props) {
+  return (
+    <p>재고 : {props.item[0]}</p>
+  )
+}
 export default Detail;

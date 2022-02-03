@@ -8,6 +8,8 @@ import axios from 'axios';
 
 function App() {
   let [shoes,shoesChange] = useState(Data);
+  let [item, itemChange] = useState([10,11,12]);
+
 
   return (
     <div className="App">
@@ -60,7 +62,7 @@ function App() {
         </Route>
 
         <Route path="/Detail/:id">
-          <Detail shoes={shoes} />
+          <Detail shoes={shoes} item = {item} itemChange={itemChange} />
         </Route>
       </Switch>
     </div>
