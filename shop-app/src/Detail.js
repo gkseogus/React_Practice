@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
 import { itemContext } from './App';
+import { Nav } from 'react-bootstrap';
 
 let box = styled.div`
   paading: 20px;
@@ -78,6 +79,22 @@ function Detail(props) {
           </button>
         </div>
       </div>
+      <Nav fill variant="tabs" defaultActiveKey="/home">
+  <Nav.Item>
+    <Nav.Link href="/home">Active</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="link-1">Loooonger NavLink</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="link-2">Link</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="disabled" disabled>
+      Disabled
+    </Nav.Link>
+  </Nav.Item>
+</Nav>
     </div>
   );
 }
