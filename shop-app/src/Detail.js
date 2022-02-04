@@ -73,6 +73,7 @@ function Detail(props) {
           <button className="btn btn-danger" onClick={()=>{
             props.itemChange(9)
             props.dispatch({type: '항목추가', payload : {id:2, name:'신상품', quan: 1}});
+            history.push('./cart'); // 개발환경에서 페이지 이동시 강제 새로고침이 안됨
           }}>주문하기</button>
           <button
             className="btn btn-danger"

@@ -1,8 +1,14 @@
 import React from 'react';
 import {Table} from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 
 function Cart(props) {
+    
+    // 이때 state는 redux에 있는 모든 state
+    let state = useSelector((state)=>state.reducer);
+    console.log(state)
+    let dispatch = useDispatch();
+
     return (
         <div>
 <Table striped bordered hover variant="dark">
@@ -12,14 +18,14 @@ function Cart(props) {
       <th>변경</th>
     </tr>
     {
-        props.state.map((a,i)=>{
+        state.reducer.map((a,i)=>{
             return (
                 <tr key={i}>
                 <td>{a.id}</td>
                 <td>{a.name}</td>
                 <td>{a.quan}</td>
-                <td><button onClick={()=>{props.dispatch({type: '수량증가', payload : {name: 'han'}})}}>+</button>
-                <button onClick={()=>{props.dispatch({type: '수량감소'})}}>-</button>
+                <td><button onClick={()=>{dispatch({type: '수량증가', payload : {name: 'han'}})}}>+</button>
+                <button onClick={()=>{dispatch({type: '수량감소'})}}>-</button>
                 </td>
               </tr>
             )
