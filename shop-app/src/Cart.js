@@ -26,6 +26,14 @@ function Cart(props) {
         })
     }
   </Table>
+    {
+        props.alert열렸니 === true
+        ? 
+        (<div className='my-alert2'>
+          <button onClick={() => {props.dispatch({type: '닫기'})}}>닫기</button>
+        </div>) 
+        : null       
+    }
 </div>
     )
 }
@@ -33,7 +41,8 @@ function Cart(props) {
 // redux store의 데이터를 가져와서 props로 변환
 function stateProps(state) {
     return {
-        state: state
+        state: state.reducer,
+        alert열렸니 : state.reducer2
     }
 }
 
