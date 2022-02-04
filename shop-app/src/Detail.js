@@ -5,6 +5,7 @@ import './Detail.scss';
 import { itemContext } from './App';
 import { Nav } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 
 let box = styled.div`
   paading: 20px;
@@ -71,6 +72,7 @@ function Detail(props) {
           </Info>
           <button className="btn btn-danger" onClick={()=>{
             props.itemChange(9)
+            props.dispatch({type: '항목추가'});
           }}>주문하기</button>
           <button
             className="btn btn-danger"
@@ -122,4 +124,13 @@ function Info(props) {
     <p>재고 : {props.item[0]}</p>
   )
 }
-export default Detail;
+
+// redux store의 데이터를 가져와서 props로 변환
+function stateProps(state) {
+  return {
+      state: state.reducer,
+      alert열렸니 : state.reducer2
+  }
+}
+
+export default connect(stateProps)(Detail)

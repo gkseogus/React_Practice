@@ -28,8 +28,12 @@ let baseState = [
 
 //redux에서 데이터 수정 방법을 미리 정의한다.
 function reducer(state = baseState, action){
-  if (action.type === '수량증가') {
-
+  if (action.type === '항목추가') {
+    let copy = [...state];
+    copy.push();
+    return copy
+  }
+  else if (action.type === '수량증') {
     let copy = [...state];
     copy[0].quan++;
     return copy
