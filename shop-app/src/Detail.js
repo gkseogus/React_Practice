@@ -7,9 +7,6 @@ import { Nav } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 
-let box = styled.div`
-  paading: 20px;
-`;
 
 function Detail(props) {
   let [alert, alertChange] = useState(true);
