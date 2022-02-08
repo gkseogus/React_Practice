@@ -1,6 +1,6 @@
-import React from 'react';
-import { Table } from 'react-bootstrap';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { Table } from "react-bootstrap";
+import { connect, useDispatch, useSelector } from "react-redux";
 
 function Cart(props) {
   // 이때 state는 redux에 있는 모든 state
@@ -25,14 +25,14 @@ function Cart(props) {
               <td>
                 <button
                   onClick={() => {
-                    dispatch({ type: '수량증가', data: a.id });
+                    dispatch({ type: "수량증가", data: a.id });
                   }}
                 >
                   +
                 </button>
                 <button
                   onClick={() => {
-                    dispatch({ type: '수량감소' });
+                    dispatch({ type: "수량감소" });
                   }}
                 >
                   -
@@ -46,7 +46,7 @@ function Cart(props) {
         <div className="my-alert2">
           <button
             onClick={() => {
-              props.dispatch({ type: '닫기' });
+              props.dispatch({ type: "닫기" });
             }}
           >
             닫기

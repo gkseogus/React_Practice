@@ -1,12 +1,14 @@
-import './App.css';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import React, { useContext, useState } from 'react';
-import Data from './data';
-import { Link, Route, Switch } from 'react-router-dom';
-import Detail from './Detail';
-import axios from 'axios';
-import Cart from './Cart';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import "./App.css";
+import { Navbar, Container, Nav } from "react-bootstrap";
+import React, { useContext, useState, lazy, Suspense } from "react";
+import Data from "./data";
+import { Link, Route, Switch } from "react-router-dom";
+let Detail = lazy(() => {
+  return import("./Detail.js");
+});
+import axios from "axios";
+import Cart from "./Cart";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 // 같은 값을 공유하는 범위를 생성한다.
 export let itemContext = React.createContext();
@@ -59,14 +61,14 @@ function App() {
               onClick={() => {
                 // get 요청, axios는 알아서 JSON을 Object로 바꿔준다.
                 axios
-                  .get('https://codingapple1.github.io/shop/data2.json')
+                  .get("https://codingapple1.github.io/shop/data2.json")
                   .then((result) => {
                     // ajax로 가져온 자료 출력
                     console.log(result.data);
                     shoesChange([...shoes, ...result.data]);
                   })
                   .catch(() => {
-                    console.log('err');
+                    console.log("err");
                   });
               }}
             >
@@ -77,7 +79,9 @@ function App() {
 
         <Route path="/Detail/:id">
           <itemContext value={item}>
-            <Detail shoes={shoes} item={item} itemChange={itemChange} />
+            <Suspense fallback={<div>로딩중</div>}>
+              <Detail shoes={shoes} item={item} itemChange={itemChange} />
+            </Suspense>
           </itemContext>
         </Route>
 
@@ -101,12 +105,12 @@ function Card(props) {
     <div
       className="col-md-4"
       onClick={() => {
-        history.push('/detail/' + props.shoes.id);
+        history.push("/detail/" + props.shoes.id);
       }}
     >
       <img
         src={
-          'https://codingapple1.github.io/shop/shoes' + (props.i + 1) + '.jpg'
+          "https://codingapple1.github.io/shop/shoes" + (props.i + 1) + ".jpg"
         }
         width="100%"
         alt="img"
