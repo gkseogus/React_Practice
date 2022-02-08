@@ -25,7 +25,7 @@ function Cart(props) {
               <td>
                 <button
                   onClick={() => {
-                    dispatch({ type: '수량증가' });
+                    dispatch({ type: '수량증가', data: a.id });
                   }}
                 >
                   +

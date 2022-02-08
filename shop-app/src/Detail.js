@@ -7,7 +7,6 @@ import { Nav } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 
-
 function Detail(props) {
   let [alert, alertChange] = useState(true);
   let [inputData, inputDataChange] = useState('');
@@ -17,17 +16,17 @@ function Detail(props) {
 
   // 컴포넌트가 mount, update 될때 특정 코드 실행
   // 라이프사이클
-  useEffect(()=>{
-    let Timmer = setTimeout(()=>{
-      alertChange(false)
-    }, 3000)
+  useEffect(() => {
+    let Timmer = setTimeout(() => {
+      alertChange(false);
+    }, 3000);
     // alert 없어지면 타이머도 사라짐
-    return ()=>{
+    return () => {
       clearTimeout(Timmer);
-    }
+    };
     // [] = 조건문, alert라는 state가 변경 될 때만 useEffect 실행
-  },[alert]);
-  
+  }, [alert]);
+
   let { id } = useParams();
   let history = useHistory();
   let 찾은상품 = props.shoes.find((x) => x.id === id);
@@ -37,20 +36,20 @@ function Detail(props) {
       <box>
         <title className="red">Detail</title>
       </box>
-      
+
       {/* input데이터를 inputData객체에 저장 */}
-      <input onChange={(e)=>{
-        inputDataChange(e.target.value)
-      }}/>
+      <input
+        onChange={(e) => {
+          inputDataChange(e.target.value);
+        }}
+      />
 
       {/* UI */}
-      {
-        alert === true?
-              <div className="my-alert">
-                  <p>재고없음</p>
-              </div> 
-        : null
-      }
+      {alert === true ? (
+        <div className="my-alert">
+          <p>재고없음</p>
+        </div>
+      ) : null}
 
       <div className="row">
         <div className="col-md-6">
@@ -64,14 +63,20 @@ function Detail(props) {
           <h4 className="pt-5">{찾은상품.title}</h4>
           <p>{찾은상품.content}</p>
           <p>{찾은상품.price}</p>
-          <Info InfoItem={props.item}>
-
-          </Info>
-          <button className="btn btn-danger" onClick={()=>{
-            props.itemChange(9)
-            props.dispatch({type: '항목추가', payload : {id:2, name:'신상품', quan: 1}});
-            history.push('./cart'); // 개발환경에서 페이지 이동시 강제 새로고침이 안됨
-          }}>주문하기</button>
+          <Info InfoItem={props.item}></Info>
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              props.itemChange(9);
+              props.dispatch({
+                type: '항목추가',
+                payload: { id: 찾은상품.id, name: 찾은상품.title, quan: 1 },
+              });
+              history.push('./cart'); // 개발환경에서 페이지 이동시 강제 새로고침이 안됨
+            }}
+          >
+            주문하기
+          </button>
           <button
             className="btn btn-danger"
             onClick={() => {
@@ -82,53 +87,63 @@ function Detail(props) {
           </button>
         </div>
       </div>
-      <Nav className='mt-5' fill variant="tabs" defaultActiveKey="/link-0">
+      <Nav className="mt-5" fill variant="tabs" defaultActiveKey="/link-0">
         <Nav.Item>
-          <Nav.Link eventKey="link-0" onClick={()=>{anyswitchChange(false); clickTabChange(0)}}>Loooonger NavLink</Nav.Link>
+          <Nav.Link
+            eventKey="link-0"
+            onClick={() => {
+              anyswitchChange(false);
+              clickTabChange(0);
+            }}
+          >
+            Loooonger NavLink
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-1" onClick={()=>{anyswitchChange(false); clickTabChange(1)}}>Link</Nav.Link>
+          <Nav.Link
+            eventKey="link-1"
+            onClick={() => {
+              anyswitchChange(false);
+              clickTabChange(1);
+            }}
+          >
+            Link
+          </Nav.Link>
         </Nav.Item>
       </Nav>
 
-       {/* in = 스위치, true일때만 애니메이션 동작 */}
+      {/* in = 스위치, true일때만 애니메이션 동작 */}
       <CSSTransition in={anyswitch} classNames="animation" timeout={500}>
-        <TabContent clickTab={clickTab} anyswitchChange={anyswitchChange}/>
+        <TabContent clickTab={clickTab} anyswitchChange={anyswitchChange} />
       </CSSTransition>
-    
-    
-
     </div>
   );
 }
 
-function TabContent(props){
-
-  useEffect(()=>{
+function TabContent(props) {
+  useEffect(() => {
     props.anyswitchChange(true);
   });
 
   if (props.clickTab === 0) {
-  return <div>0번째 내용입니다.</div>
-  } else if(props.clickTab === 1) {
-  return <div>1번째 내용입니다.</div>
+    return <div>0번째 내용입니다.</div>;
+  } else if (props.clickTab === 1) {
+    return <div>1번째 내용입니다.</div>;
   } else if (props.clickTab === 2) {
-  return <div>2번째 내용입니다.</div>
-  } 
+    return <div>2번째 내용입니다.</div>;
+  }
 }
 
 function Info(props) {
-  return (
-    <p>재고 : {props.item[0]}</p>
-  )
+  return <p>재고 : {props.item[0]}</p>;
 }
 
 // redux store의 데이터를 가져와서 props로 변환
 function stateProps(state) {
   return {
-      state: state.reducer,
-      alert열렸니 : state.reducer2
-  }
+    state: state.reducer,
+    alert열렸니: state.reducer2,
+  };
 }
 
-export default connect(stateProps)(Detail)
+export default connect(stateProps)(Detail);
